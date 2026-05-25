@@ -680,7 +680,7 @@
         pharetra.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-orange">Hire Me</a>
+        <a href="#contact" class="btn-orange" id="hire-me-btn">Hire Me</a>
         <div class="hero-socials">
           <!-- Facebook -->
           <a href="#" aria-label="Facebook">
@@ -988,6 +988,110 @@
       });
     }, { threshold: 0.4 });
     document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+    // ── Confetti ──
+    (function () {
+      const canvas = document.createElement('canvas');
+      canvas.id = 'confetti-canvas';
+      Object.assign(canvas.style, {
+        position: 'fixed', top: 0, left: 0,
+        width: '100%', height: '100%',
+        pointerEvents: 'none', zIndex: 9999,
+      });
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+
+      const COLORS = ['#fd6f00','#ffb347','#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#c77dff','#fff'];
+      const SHAPES = ['rect', 'circle', 'ribbon'];
+      let particles = [];
+      let raf = null;
+
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function createParticle(originX, originY) {
+        const angle  = Math.random() * Math.PI * 2;
+        const speed  = 6 + Math.random() * 14;
+        const shape  = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+        return {
+          x: originX, y: originY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - (Math.random() * 10 + 8), // bias upward
+          gravity: 0.35 + Math.random() * 0.25,
+          drag: 0.97 + Math.random() * 0.02,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          shape,
+          w: 8  + Math.random() * 10,
+          h: 4  + Math.random() * 8,
+          angle: Math.random() * Math.PI * 2,
+          spin:  (Math.random() - 0.5) * 0.25,
+          opacity: 1,
+          fade: 0.012 + Math.random() * 0.008,
+        };
+      }
+
+      function burst(x, y, count) {
+        for (let i = 0; i < count; i++) particles.push(createParticle(x, y));
+        if (!raf) loop();
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles = particles.filter(p => p.opacity > 0);
+
+        for (const p of particles) {
+          p.vy  += p.gravity;
+          p.vx  *= p.drag;
+          p.vy  *= p.drag;
+          p.x   += p.vx;
+          p.y   += p.vy;
+          p.angle += p.spin;
+          p.opacity -= p.fade;
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+
+          if (p.shape === 'circle') {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (p.shape === 'ribbon') {
+            ctx.beginPath();
+            ctx.moveTo(-p.w / 2, 0);
+            ctx.quadraticCurveTo(0, -p.h, p.w / 2, 0);
+            ctx.quadraticCurveTo(0,  p.h, -p.w / 2, 0);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          }
+          ctx.restore();
+        }
+
+        raf = particles.length > 0 ? requestAnimationFrame(loop) : null;
+      }
+
+      document.getElementById('hire-me-btn').addEventListener('click', function (e) {
+        e.preventDefault();
+        const rect = this.getBoundingClientRect();
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+
+        // staggered bursts for a lush explosion
+        burst(cx, cy, 80);
+        setTimeout(() => burst(cx - 60, cy, 40), 80);
+        setTimeout(() => burst(cx + 60, cy, 40), 150);
+        setTimeout(() => burst(cx, cy - 40, 50), 220);
+
+        // scroll to contact after a beat
+        setTimeout(() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }), 400);
+      });
+    })();
   </script>
 </body>
 </html>
