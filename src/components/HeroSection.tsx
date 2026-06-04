@@ -47,13 +47,27 @@ export default function HeroSection() {
     <section className="pt-32 pb-24 px-8">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Text */}
-          <div className="space-y-8">
+          {/* Headshot - Left */}
+          <motion.div variants={imageVariants} className="flex items-center justify-center order-2 md:order-1">
+            <div className="w-full max-w-md bg-gray-100 rounded-lg overflow-hidden">
+              <Image
+                src="/images/profile/headshot.avif"
+                alt="Jayden Hanly"
+                width={400}
+                height={533}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
+
+          {/* Text - Right */}
+          <div className="space-y-8 order-1 md:order-2 flex flex-col justify-center">
             <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
@@ -75,20 +89,6 @@ export default function HeroSection() {
               </a>
             </motion.div>
           </div>
-
-          {/* Headshot */}
-          <motion.div variants={imageVariants} className="flex items-center justify-center">
-            <div className="w-full max-w-sm aspect-square bg-gray-100 rounded-lg overflow-hidden">
-              <Image
-                src="/images/profile/headshot.jpg"
-                alt="Jayden Hanly"
-                width={400}
-                height={400}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
