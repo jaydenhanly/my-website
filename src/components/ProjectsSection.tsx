@@ -17,6 +17,14 @@ export default function ProjectsSection() {
           {projects.map((project) => (
             <Link key={project.id} href={`/projects/${project.id}`}>
               <div className="pb-12 border-b border-gray-100 last:border-b-0 cursor-pointer hover:opacity-75 transition-opacity">
+                {/* Project Image Placeholder */}
+                <div className="mb-6 rounded-lg overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 aspect-video flex items-center justify-center">
+                  <p className="text-gray-600 text-center">
+                    <span className="text-3xl block mb-2">📸</span>
+                    <span className="text-sm">Project image coming soon</span>
+                  </p>
+                </div>
+
                 {/* Project Title & Company */}
                 <div className="mb-4">
                   <h3 className="text-2xl font-semibold text-black mb-2">

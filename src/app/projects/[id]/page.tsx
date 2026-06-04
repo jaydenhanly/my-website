@@ -85,6 +85,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
+          {/* Project Image Placeholder */}
+          <div className="my-12 rounded-lg overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 aspect-video flex items-center justify-center">
+            <p className="text-center text-gray-600 px-4">
+              <span className="text-5xl mb-2 block">📸</span>
+              Project image coming soon<br />
+              <span className="text-sm mt-2">Add to: <code className="bg-gray-300 px-2 py-1 rounded">public/images/projects/{project.id}-cover.jpg</code></span>
+            </p>
+          </div>
+
           <div className="prose prose-sm max-w-none">
             {/* Summary */}
             <section className="mb-12 py-12 border-y border-gray-200">
