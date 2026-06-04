@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { projects } from '@/lib/projects';
 
 function formatDateRange(start: string, end: string): string {
@@ -14,39 +15,46 @@ export default function ProjectsSection() {
 
         <div className="space-y-12">
           {projects.map((project) => (
-            <div key={project.id} className="pb-12 border-b border-gray-100 last:border-b-0">
-              {/* Project Title & Company */}
-              <div className="mb-4">
-                <h3 className="text-2xl font-semibold text-black mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-gray-500">
-                  {project.company} • {formatDateRange(project.startDate, project.endDate)}
-                </p>
-              </div>
+            <Link key={project.id} href={`/projects/${project.id}`}>
+              <div className="pb-12 border-b border-gray-100 last:border-b-0 cursor-pointer hover:opacity-75 transition-opacity">
+                {/* Project Title & Company */}
+                <div className="mb-4">
+                  <h3 className="text-2xl font-semibold text-black mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    {project.company} • {formatDateRange(project.startDate, project.endDate)}
+                  </p>
+                </div>
 
-              {/* Role & Description */}
-              <div className="mb-4">
-                <p className="text-sm font-medium text-gray-700 mb-1">
-                  {project.role}
-                </p>
-                <p className="text-base text-gray-600 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
+                {/* Role & Description */}
+                <div className="mb-4">
+                  <p className="text-sm font-medium text-gray-700 mb-1">
+                    {project.role}
+                  </p>
+                  <p className="text-base text-gray-600 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-block px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Read More Link */}
+                <p className="text-sm font-medium text-gray-900 hover:text-gray-600">
+                  Read more →
+                </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
