@@ -47,23 +47,21 @@ export default function HeroSection() {
     <section className="pt-32 pb-24 px-8">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Headshot - Left */}
-          <motion.div variants={imageVariants} className="flex items-center justify-center order-2 md:order-1">
-            <div className="w-full max-w-md bg-gray-100 rounded-lg overflow-hidden">
-              <Image
-                src="/images/profile/headshot.avif"
-                alt="Jayden Hanly"
-                width={400}
-                height={533}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
+          {/* Headshot - Left (full bleed) */}
+          <motion.div variants={imageVariants} className="order-2 md:order-1 -mb-24 md:mb-0">
+            <Image
+              src="/images/profile/headshot.avif"
+              alt="Jayden Hanly"
+              width={400}
+              height={533}
+              className="w-full h-full object-cover"
+              priority
+            />
           </motion.div>
 
           {/* Text - Right */}
