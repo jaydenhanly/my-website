@@ -45,27 +45,16 @@ export default function HeroSection() {
 
   return (
     <section className="pt-32 pb-24 px-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start min-h-[600px]"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Headshot - Left (full bleed) */}
-          <motion.div variants={imageVariants} className="order-2 md:order-1 -mb-24 md:mb-0">
-            <Image
-              src="/images/profile/headshot.avif"
-              alt="Jayden Hanly"
-              width={400}
-              height={533}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </motion.div>
+          {/* Text - Left (col span 5) */}
+          <div className="space-y-8 md:col-span-5 flex flex-col justify-start pt-0">
 
-          {/* Text - Right */}
-          <div className="space-y-8 order-1 md:order-2 flex flex-col justify-center">
             <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
@@ -87,6 +76,20 @@ export default function HeroSection() {
               </a>
             </motion.div>
           </div>
+
+          {/* Headshot - Right (col span 7) */}
+          <motion.div variants={imageVariants} className="md:col-span-7 flex items-stretch -mr-8 md:mr-0">
+            <div className="w-full flex items-center justify-end">
+              <Image
+                src="/images/profile/headshot.avif"
+                alt="Jayden Hanly"
+                width={400}
+                height={533}
+                className="w-full max-w-md h-auto object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
