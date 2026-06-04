@@ -30,6 +30,12 @@ export default function Navigation() {
             Experience
           </button>
           <button
+            onClick={() => scrollToSection('projects')}
+            className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
+          >
+            Projects
+          </button>
+          <button
             onClick={() => scrollToSection('contact')}
             className="text-sm text-gray-700 hover:text-gray-900 transition-colors"
           >
