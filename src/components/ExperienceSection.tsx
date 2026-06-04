@@ -39,21 +39,34 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="py-24 px-8 border-t border-gray-200">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-black mb-12">Experience</h2>
 
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <div key={index} className="flex gap-8">
-              <div className="w-20 flex-shrink-0">
-                <p className="text-sm font-medium text-gray-500">{exp.year}</p>
-              </div>
-              <div className="flex-grow pb-8 border-b border-gray-100">
-                <h3 className="text-lg font-medium text-black">{exp.company}</h3>
-                <p className="text-sm text-gray-600 mt-1">{exp.role}</p>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="text-left py-4 px-4 text-xs font-semibold text-gray-700 bg-gray-50">Year</th>
+                <th className="text-left py-4 px-4 text-xs font-semibold text-gray-700 bg-gray-50">Company</th>
+                <th className="text-left py-4 px-4 text-xs font-semibold text-gray-700 bg-gray-50">Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              {experiences.map((exp, index) => (
+                <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td className="py-4 px-4">
+                    <p className="text-sm font-semibold text-gray-900">{exp.year}</p>
+                  </td>
+                  <td className="py-4 px-4">
+                    <p className="text-sm font-medium text-gray-900">{exp.company}</p>
+                  </td>
+                  <td className="py-4 px-4">
+                    <p className="text-sm text-gray-600">{exp.role}</p>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
