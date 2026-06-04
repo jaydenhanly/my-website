@@ -52,8 +52,8 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
         >
-          {/* Headshot - Left (with frame) */}
-          <motion.div variants={imageVariants} className="flex items-center justify-center order-2 md:order-1">
+          {/* Headshot - Right (with frame) */}
+          <motion.div variants={imageVariants} className="flex items-center justify-center order-1 md:order-2">
             <div className="w-full max-w-md bg-gray-100 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
               <Image
                 src="/images/profile/headshot.avif"
@@ -66,8 +66,8 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Text - Right */}
-          <div className="space-y-8 order-1 md:order-2">
+          {/* Text - Left */}
+          <div className="space-y-8 order-2 md:order-1">
             <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
