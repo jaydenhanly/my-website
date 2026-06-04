@@ -1,5 +1,6 @@
-export default function HeroSection() {
+import Image from 'next/image';
 
+export default function HeroSection() {
   return (
     <section className="pt-32 pb-20 px-8">
       <div className="max-w-4xl mx-auto">
@@ -28,16 +29,17 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Image Placeholder */}
+          {/* Headshot */}
           <div className="flex items-center justify-center">
-            <div className="w-full max-w-sm aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg overflow-hidden flex items-center justify-center">
-              <p className="text-center text-gray-600 px-4">
-                <span className="text-4xl mb-2 block">📷</span>
-                Add your headshot<br />
-                <code className="text-sm bg-gray-300 px-2 py-1 rounded inline-block mt-2">
-                  public/images/profile/headshot.jpg
-                </code>
-              </p>
+            <div className="w-full max-w-sm aspect-square bg-gray-100 rounded-lg overflow-hidden">
+              <Image
+                src="/images/profile/headshot.jpg"
+                alt="Jayden Hanly"
+                width={400}
+                height={400}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
           </div>
         </div>

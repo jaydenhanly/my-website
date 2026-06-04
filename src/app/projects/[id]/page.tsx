@@ -1,5 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { projects } from '@/lib/projects';
+
+const projectImageMap: Record<string, string> = {
+  '3shape-2024': '/images/projects/3shape-2024-cover.jpg',
+  'skybox-2022': '/images/projects/skybox-2022-cover.jpg',
+  'cphux-2019': '/images/projects/cphux-2019-cover.jpg',
+  '3p-learning-2016': '/images/projects/3p-learning-2016-cover.jpg',
+};
 
 interface ProjectPageProps {
   params: {
@@ -85,13 +93,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          {/* Project Image Placeholder */}
-          <div className="my-12 rounded-lg overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 aspect-video flex items-center justify-center">
-            <p className="text-center text-gray-600 px-4">
-              <span className="text-5xl mb-2 block">📸</span>
-              Project image coming soon<br />
-              <span className="text-sm mt-2">Add to: <code className="bg-gray-300 px-2 py-1 rounded">public/images/projects/{project.id}-cover.jpg</code></span>
-            </p>
+          {/* Project Cover Image */}
+          <div className="my-12 rounded-lg overflow-hidden bg-gray-100 aspect-video">
+            <Image
+              src={projectImageMap[project.id]}
+              alt={project.title}
+              width={800}
+              height={450}
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <div className="prose prose-sm max-w-none">
