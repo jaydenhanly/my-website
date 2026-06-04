@@ -1,36 +1,83 @@
+'use client';
+
 import Image from 'next/image';
+import { motion, easeOut } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 
 export default function HeroSection() {
+  const prefersReducedMotion = useReducedMotion();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: prefersReducedMotion ? 0 : 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.2 : 0.6,
+        ease: easeOut,
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: prefersReducedMotion ? 0.2 : 0.8,
+        ease: easeOut,
+        delay: prefersReducedMotion ? 0 : 0.15,
+      },
+    },
+  };
+
   return (
-    <section className="pt-32 pb-20 px-8">
+    <section className="pt-32 pb-24 px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Text */}
           <div className="space-y-8">
-            <div>
+            <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
               </h1>
-            </div>
+            </motion.div>
 
-            <div className="max-w-2xl">
+            <motion.div variants={itemVariants} className="max-w-2xl">
               <p className="text-lg text-gray-700 leading-relaxed">
                 I help teams build products grounded in great collaboration across stakeholders, developers, and the wider organization. 15 years of experience in product development.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="pt-8">
+            <motion.div variants={itemVariants}>
               <a
                 href="#contact"
-                className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+                className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors cursor-pointer"
               >
                 Get in touch
               </a>
-            </div>
+            </motion.div>
           </div>
 
           {/* Headshot */}
-          <div className="flex items-center justify-center">
+          <motion.div variants={imageVariants} className="flex items-center justify-center">
             <div className="w-full max-w-sm aspect-square bg-gray-100 rounded-lg overflow-hidden">
               <Image
                 src="/images/profile/headshot.jpg"
@@ -41,8 +88,8 @@ export default function HeroSection() {
                 priority
               />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

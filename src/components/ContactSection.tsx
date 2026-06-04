@@ -1,8 +1,13 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { motion, easeOut } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
+import { useInView } from '@/hooks/useInView';
 
 export default function ContactSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const [ref, isInView] = useInView();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,12 +39,30 @@ export default function ContactSection() {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 32 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.2 : 0.6,
+        ease: easeOut,
+      },
+    },
+  };
+
   return (
     <section id="contact" className="py-24 px-8 border-t border-gray-200">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-black mb-12">Get in touch</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <motion.div
+          ref={ref}
+          className="grid grid-cols-1 md:grid-cols-2 gap-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
           {/* Contact info */}
           <div>
             <p className="text-lg text-gray-700 mb-8">
@@ -135,7 +158,7 @@ export default function ContactSection() {
               <p className="text-sm text-red-600 mt-4">Something went wrong. Please try again.</p>
             )}
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
