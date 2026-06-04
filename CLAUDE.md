@@ -43,11 +43,17 @@ At the start of every session:
 2. Read ARCHITECTURE.md — understand the system before touching any layer of it
 3. Ask if anything is unclear before writing code
 
+**During development:**
+- Always verify `npm run dev` is running on localhost (check port 3000 or 3001 if 3000 is in use)
+- After completing code changes, start dev server before committing (enables real-time verification of new changes)
+- Test all UI changes visually in the browser before deployment
+
 At the end of every session:
-1. Update TASKS.md — move completed items, add anything new
-2. Add any architectural decisions to DECISIONS.md
-3. Log any new bugs in KNOWN_ISSUES.md
-4. Update PROMPTS.md if a prompt worked especially well
+1. Start the dev server (`npm run dev`) so changes are live for review
+2. Update TASKS.md — move completed items, add anything new
+3. Add any architectural decisions to DECISIONS.md
+4. Log any new bugs in KNOWN_ISSUES.md
+5. Deploy to production via `vercel --prod` if changes are ready
 
 ---
 
