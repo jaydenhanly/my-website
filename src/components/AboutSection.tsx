@@ -6,15 +6,15 @@ export default function AboutSection() {
 
         <div className="max-w-2xl space-y-6">
           <p className="text-lg text-gray-700 leading-relaxed">
-            I'm driven by the intersection of great design and great collaboration. In an era defined by speed, it's easy to prioritize velocity over substance. But meaningful impact requires something more.
+            I&apos;m driven by the intersection of great design and great collaboration. In an era defined by speed, it&apos;s easy to prioritize velocity over substance. But meaningful impact requires something more.
           </p>
 
           <p className="text-lg text-gray-700 leading-relaxed">
-            Throughout my career, I've learned that the best products emerge when designers, developers, and stakeholders work as a unified team. I've led teams, built design systems, and shaped strategy—always with collaboration at the core.
+            Throughout my career, I&apos;ve learned that the best products emerge when designers, developers, and stakeholders work as a unified team. I&apos;ve led teams, built design systems, and shaped strategy—always with collaboration at the core.
           </p>
 
           <p className="text-lg text-gray-700 leading-relaxed">
-            Currently, I'm a Senior UX Designer and Team Lead at 3Shape, where I work on dental technology that impacts millions of patients worldwide.
+            Currently, I&apos;m a Senior UX Designer and Team Lead at 3Shape, where I work on dental technology that impacts millions of patients worldwide.
           </p>
         </div>
       </div>

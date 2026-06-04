@@ -43,7 +43,7 @@ export default function ContactSection() {
           {/* Contact info */}
           <div>
             <p className="text-lg text-gray-700 mb-8">
-              I'm always open to interesting projects and collaboration opportunities.
+              I&apos;m always open to interesting projects and collaboration opportunities.
             </p>
 
             <div className="space-y-6">
@@ -129,7 +129,7 @@ export default function ContactSection() {
             </div>
 
             {status === 'success' && (
-              <p className="text-sm text-green-600 mt-4">Message sent! I'll get back to you soon.</p>
+              <p className="text-sm text-green-600 mt-4">Message sent! I&apos;ll get back to you soon.</p>
             )}
             {status === 'error' && (
               <p className="text-sm text-red-600 mt-4">Something went wrong. Please try again.</p>
