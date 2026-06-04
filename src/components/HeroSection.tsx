@@ -45,16 +45,29 @@ export default function HeroSection() {
 
   return (
     <section className="pt-32 pb-24 px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start min-h-[600px]"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Text - Left (col span 5) */}
-          <div className="space-y-8 md:col-span-5 flex flex-col justify-start pt-0">
+          {/* Headshot - Left (with frame) */}
+          <motion.div variants={imageVariants} className="flex items-center justify-center order-2 md:order-1">
+            <div className="w-full max-w-md bg-gray-100 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+              <Image
+                src="/images/profile/headshot.avif"
+                alt="Jayden Hanly"
+                width={400}
+                height={533}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
 
+          {/* Text - Right */}
+          <div className="space-y-8 order-1 md:order-2">
             <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
@@ -76,20 +89,6 @@ export default function HeroSection() {
               </a>
             </motion.div>
           </div>
-
-          {/* Headshot - Right (col span 7) */}
-          <motion.div variants={imageVariants} className="md:col-span-7 flex items-stretch -mr-8 md:mr-0">
-            <div className="w-full flex items-center justify-end">
-              <Image
-                src="/images/profile/headshot.avif"
-                alt="Jayden Hanly"
-                width={400}
-                height={533}
-                className="w-full max-w-md h-auto object-cover"
-                priority
-              />
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
