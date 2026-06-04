@@ -61,7 +61,7 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="py-24 px-8 border-t border-gray-200">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-black mb-12">Experience</h2>
 
         <div className="overflow-x-auto">

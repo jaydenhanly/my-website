@@ -43,7 +43,7 @@ export default function Navigation() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isScrolled ? 'bg-[#C7D0FF]/90 backdrop-blur-sm border-b border-[#A8B4F0]/50' : 'bg-[#C7D0FF] border-b border-[#A8B4F0]'}`}>
-      <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between h-16">
+      <div className="max-w-5xl mx-auto px-8 py-4 flex items-center justify-between h-16">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="text-xl font-bold text-gray-900 hover:text-black transition-colors cursor-pointer"

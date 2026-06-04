@@ -45,7 +45,7 @@ export default function HeroSection() {
 
   return (
     <section className="pt-32 pb-24 px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           variants={containerVariants}
