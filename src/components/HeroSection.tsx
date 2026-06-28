@@ -80,12 +80,19 @@ export default function HeroSection() {
               </p>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
               <a
                 href="#contact"
                 className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors cursor-pointer"
               >
                 Get in touch
+              </a>
+              <a
+                href="/resume.pdf"
+                download="Jayden_Hanly_Resume.pdf"
+                className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors cursor-pointer"
+              >
+                Download resume
               </a>
             </motion.div>
           </div>
