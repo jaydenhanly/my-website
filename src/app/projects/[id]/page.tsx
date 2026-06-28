@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { projects } from '@/lib/projects';
+import ImageLightbox from '@/components/ui/ImageLightbox';
 
 const projectImageMap: Record<string, string> = {
   '3shape-2024': '/images/projects/3shape-2024-cover.jpg',
@@ -113,8 +114,74 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               </p>
             </section>
 
+            {/* Case Studies */}
+            {project.caseStudies && project.caseStudies.length > 0 && (
+              <div className="space-y-16">
+                {project.caseStudies.map((study, i) => (
+                  <section key={i}>
+                    <h2 className="text-3xl font-bold text-black mb-6">{study.title}</h2>
+
+                    {study.problem && (
+                      <div className="mb-6">
+                        <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-2">Problem</h3>
+                        <p className="text-base text-gray-700 leading-relaxed">{study.problem}</p>
+                      </div>
+                    )}
+
+                    {study.solution && (
+                      <div className="mb-6">
+                        <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-2">Solution</h3>
+                        <p className="text-base text-gray-700 leading-relaxed">{study.solution}</p>
+                      </div>
+                    )}
+
+                    {study.images && study.images.length > 0 && (
+                      <div className="my-8 space-y-6">
+                        {study.images.length === 2 ? (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {study.images.map((img, j) => (
+                              <ImageLightbox key={j} image={img} />
+                            ))}
+                          </div>
+                        ) : study.images.length === 3 ? (
+                          <>
+                            <ImageLightbox image={study.images[0]} />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {study.images.slice(1).map((img, j) => (
+                                <ImageLightbox key={j} image={img} />
+                              ))}
+                            </div>
+                          </>
+                        ) : (
+                          study.images.map((img, j) => <ImageLightbox key={j} image={img} />)
+                        )}
+                      </div>
+                    )}
+
+                    {study.resultsText && (
+                      <div className="mb-6">
+                        <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 mb-2">Results</h3>
+                        <p className="text-base text-gray-700 leading-relaxed">{study.resultsText}</p>
+                      </div>
+                    )}
+
+                    {study.metrics && study.metrics.length > 0 && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                        {study.metrics.map((metric, j) => (
+                          <div key={j} className="bg-gray-100 rounded-xl px-6 py-8 text-center">
+                            <p className="text-4xl font-bold text-black mb-1">{metric.value}</p>
+                            <p className="text-sm text-gray-600">{metric.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </section>
+                ))}
+              </div>
+            )}
+
             {/* Results */}
-            {project.results && project.results.length > 0 && (
+            {!project.caseStudies && project.results && project.results.length > 0 && (
               <section className="mb-12">
                 <h2 className="text-3xl font-bold text-black mb-6">Results</h2>
                 <ul className="space-y-3">
@@ -129,7 +196,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             )}
 
             {/* Highlights */}
-            {project.highlights && project.highlights.length > 0 && (
+            {!project.caseStudies && project.highlights && project.highlights.length > 0 && (
               <section className="mb-12">
                 <h2 className="text-3xl font-bold text-black mb-6">Key Highlights</h2>
                 <ul className="space-y-3">
