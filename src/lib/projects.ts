@@ -9,8 +9,16 @@ export interface CaseStudyMetric {
   label: string;
 }
 
+export interface CaseStudyList {
+  heading: string;
+  items: string[];
+}
+
 export interface CaseStudySection {
   title: string;
+  body?: string[];
+  points?: string[];
+  lists?: CaseStudyList[];
   problem?: string;
   solution?: string;
   resultsText?: string;
@@ -31,6 +39,8 @@ export interface Project {
   results?: string[];
   highlights?: string[];
   caseStudies?: CaseStudySection[];
+  /** Render case studies as an immersive, scroll-revealed story. */
+  storytelling?: boolean;
 }
 
 export const projects: Project[] = [
@@ -44,6 +54,7 @@ export const projects: Project[] = [
     startDate: '2024-01',
     endDate: '2026-01',
     tags: ['Team management', 'UI Design', 'Product design', 'Business development', 'User research', 'Analytics'],
+    storytelling: true,
     caseStudies: [
       {
         title: 'Launching a new after-sales experience',
@@ -127,12 +138,135 @@ export const projects: Project[] = [
       'Launched a world-class product',
       'Established product analytics post-launch',
     ],
-    highlights: [
-      'Audited live product and established consistency baseline',
-      'Hired and managed a team of 3 designers',
-      'Built design system that adapted through rebranding process',
-      'Established design-to-development handover processes',
-      'Led rebranding effort with external agency collaboration',
+    caseStudies: [
+      {
+        title: 'My reflections',
+        body: [
+          'I am very proud of my time at Skybox from humble beginnings, to managing a fun team of designers and launching an awesome product.',
+        ],
+        lists: [
+          {
+            heading: 'What worked well?',
+            items: [
+              'The team culture I put together was probably my favourite team I’ve worked in in years.',
+              'Building a strong and open culture within your team can keep up productivity and morale even in the toughest of work environments with a lot of uncertainty.',
+              'The product looked excellent by the end after the months of hard work with the design system, product handover processes and quality assurance.',
+            ],
+          },
+          {
+            heading: 'What could be improved?',
+            items: [
+              'I think I could’ve engaged earlier in high level discussions about product direction, but I found it tricky to balance this with the actual design work that needed to be done. In future, I will discuss this with my manager more.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'A design system that grew with us',
+        body: ['The design system adapted to different needs as the design team and company grew:'],
+        points: [
+          'Create consistency across the existing product with its existing visual identity',
+          'Establish a baseline new visual identity with a rebranding process',
+          'Transition to a rebranded look and feel',
+        ],
+      },
+      {
+        title: 'Creating consistency',
+        body: [
+          'This was a solo project for me in the beginning while I was the only designer in the company.',
+          'This process continued for a couple of months to get the live product looking more consistent, but also to establish a list of components that needed to start being built into a design system.',
+        ],
+        images: [
+          {
+            src: '/images/projects/skybox-2022/wireflow.png',
+            alt: 'Comprehensive wireflow of the existing live product',
+            caption: 'The first step was to understand all the ins and outs of the existing live product. I love doing this with a comprehensive wireflow.',
+          },
+          {
+            src: '/images/projects/skybox-2022/component-audit.png',
+            alt: 'Audit of component variations in the live product',
+            caption: 'Then I needed to categorise the types of components being used and see there were inconsistencies. Needless to say, there were a lot of versions of each component and plenty of colours and fonts.',
+          },
+          {
+            src: '/images/projects/skybox-2022/live-changes.jpg',
+            alt: 'Annotated screenshots used to brief frontend developers',
+            caption: 'Using pretty rudimentary screenshots with annotations, I worked closely with the frontend developers to start making changes to the live product quickly.',
+          },
+          {
+            src: '/images/projects/skybox-2022/component-list.png',
+            alt: 'List of components to build into the design system',
+            caption: 'A list of components that needed to be built into the design system.',
+          },
+          {
+            src: '/images/projects/skybox-2022/consistency-before.jpg',
+            alt: 'The product before the consistency pass',
+            caption: 'Before',
+          },
+          {
+            src: '/images/projects/skybox-2022/consistency-after.jpg',
+            alt: 'The product after the consistency pass',
+            caption: 'After',
+          },
+        ],
+      },
+      {
+        title: 'Establishing a baseline',
+        body: [
+          'During this time, I had hired my first design colleague specialised in design systems. The goal now was to build a design system for a version 2.0 of the live product, thinking through what is needed now and in the future.',
+        ],
+        images: [
+          {
+            src: '/images/projects/skybox-2022/design-system-structure.png',
+            alt: 'Design system structure created in Figma',
+            caption: 'Together we took my list of components and researched great design systems to create a design system structure in Figma.',
+          },
+          {
+            src: '/images/projects/skybox-2022/design-system-restrictions.png',
+            alt: 'Design system retaining the existing product identity',
+            caption: 'Since we were told a full rebranding process would be coming down the line, we had some restrictions around changing the product identity too much. This meant we chose not to change colours, typography and some stylistic choices from the live product.',
+          },
+          {
+            src: '/images/projects/skybox-2022/handover-workflow.png',
+            alt: 'UX workflow for design-to-development handover',
+            caption: 'We also started to establish and iterate on handover processes and improve our handovers to be labelled and cleaner.',
+          },
+          {
+            src: '/images/projects/skybox-2022/handover-process.png',
+            alt: 'Cleaner, labelled handover process',
+            caption: 'Cleaner, labelled handovers for development teams.',
+          },
+        ],
+      },
+      {
+        title: 'Transitioning to a rebranded look',
+        body: [
+          'At this point, we were now a team of 3 designers, with the 3rd hire being a junior from university to come in as another design resource.',
+          'Finally, steps were made towards a rebranding effort and an external agency was hired to assist with the creative process. This involved a lot of conceptual talks about the emotion and themes behind the brand. I was involved in all conceptual meetings and championed furthering the development of the brand internally.',
+          'Now with our skeleton of a design system and handover processes in place, we just needed to ‘reskin’ our design system with the new brand. The end result was a very fresh and gamer-focused brand, but our handover process also proved itself, since the new live product looked just like our mockups.',
+        ],
+        images: [
+          {
+            src: '/images/projects/skybox-2022/rebrand-iteration.jpg',
+            alt: 'Early rebranding iteration based on agency sessions',
+            caption: 'One of the first iterations from our design based on the sessions with the agency.',
+          },
+          {
+            src: '/images/projects/skybox-2022/button-components.png',
+            alt: 'Rebranded button components',
+            caption: 'Button components, re-skinned with the new brand.',
+          },
+          {
+            src: '/images/projects/skybox-2022/rebrand-mockup.jpg',
+            alt: 'Rebranded product mockup',
+            caption: 'Mockup',
+          },
+          {
+            src: '/images/projects/skybox-2022/rebrand-live.png',
+            alt: 'Rebranded live product',
+            caption: 'Live product',
+          },
+        ],
+      },
     ],
   },
   {
