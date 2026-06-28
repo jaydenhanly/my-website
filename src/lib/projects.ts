@@ -131,6 +131,7 @@ export const projects: Project[] = [
     startDate: '2022-02',
     endDate: '2023-07',
     tags: ['Design system', 'Team management', 'Hiring', 'UI Design', 'Product design'],
+    storytelling: true,
     results: [
       'Built an adaptable design system from scratch',
       'Created a supportive and strong design team culture',

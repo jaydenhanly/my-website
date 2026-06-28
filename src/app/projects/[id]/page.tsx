@@ -148,32 +148,68 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
             {/* Results */}
             {project.results && project.results.length > 0 && (
-              <section className="mb-12">
-                <h2 className="text-3xl font-bold text-black mb-6">Results</h2>
-                <ul className="space-y-3">
-                  {project.results.map((result, i) => (
-                    <li key={i} className="text-base text-gray-700 flex items-start gap-3">
-                      <span className="text-black font-bold mt-0.5">→</span>
-                      <span>{result}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              project.storytelling ? (
+                <section className="flex min-h-screen flex-col justify-center">
+                  <Reveal distance={60} duration={0.8}>
+                    <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-gray-400">Results</p>
+                  </Reveal>
+                  <ul className="space-y-6">
+                    {project.results.map((result, i) => (
+                      <Reveal key={i} delay={i * 0.08} distance={50}>
+                        <li className="flex items-start gap-4 text-2xl md:text-3xl text-black leading-snug">
+                          <span className="mt-1 font-bold">→</span>
+                          <span>{result}</span>
+                        </li>
+                      </Reveal>
+                    ))}
+                  </ul>
+                </section>
+              ) : (
+                <section className="mb-12">
+                  <h2 className="text-3xl font-bold text-black mb-6">Results</h2>
+                  <ul className="space-y-3">
+                    {project.results.map((result, i) => (
+                      <li key={i} className="text-base text-gray-700 flex items-start gap-3">
+                        <span className="text-black font-bold mt-0.5">→</span>
+                        <span>{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )
             )}
 
             {/* Highlights */}
             {project.highlights && project.highlights.length > 0 && (
-              <section className="mb-12">
-                <h2 className="text-3xl font-bold text-black mb-6">Key Highlights</h2>
-                <ul className="space-y-3">
-                  {project.highlights.map((highlight, i) => (
-                    <li key={i} className="text-base text-gray-700 flex items-start gap-3">
-                      <span className="text-black font-bold mt-0.5">✓</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              project.storytelling ? (
+                <section className="flex min-h-screen flex-col justify-center">
+                  <Reveal distance={60} duration={0.8}>
+                    <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-gray-400">Key Highlights</p>
+                  </Reveal>
+                  <ul className="space-y-6">
+                    {project.highlights.map((highlight, i) => (
+                      <Reveal key={i} delay={i * 0.08} distance={50}>
+                        <li className="flex items-start gap-4 text-2xl md:text-3xl text-black leading-snug">
+                          <span className="mt-1 font-bold">✓</span>
+                          <span>{highlight}</span>
+                        </li>
+                      </Reveal>
+                    ))}
+                  </ul>
+                </section>
+              ) : (
+                <section className="mb-12">
+                  <h2 className="text-3xl font-bold text-black mb-6">Key Highlights</h2>
+                  <ul className="space-y-3">
+                    {project.highlights.map((highlight, i) => (
+                      <li key={i} className="text-base text-gray-700 flex items-start gap-3">
+                        <span className="text-black font-bold mt-0.5">✓</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )
             )}
 
             {/* Case Studies — immersive scroll story */}
