@@ -9,7 +9,7 @@ import Confetti from './ui/Confetti';
 /** A full-viewport stage that vertically centres a single content piece. */
 function Scene({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <section className={`flex min-h-screen flex-col justify-center py-20 ${className ?? ''}`}>
+    <section className={`flex min-h-[50vh] flex-col justify-center py-10 ${className ?? ''}`}>
       {children}
     </section>
   );
@@ -171,18 +171,16 @@ export default function StoryCaseStudies({
               )}
 
               {study.metrics && study.metrics.length > 0 && (
-                <div className="relative mt-16">
-                  <Confetti count={70} />
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                    {study.metrics.map((metric, j) => (
+                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-10">
+                  {study.metrics.map((metric, j) => (
                     <Reveal key={j} delay={j * 0.15} distance={40} scale={0.8} duration={0.9}>
-                      <div className="text-center">
+                      <div className="relative text-center">
+                        <Confetti count={55} interactive />
                         <p className="text-7xl md:text-8xl font-bold tracking-tighter text-black">{metric.value}</p>
                         <p className="mt-4 text-base uppercase tracking-wide text-gray-500">{metric.label}</p>
                       </div>
                     </Reveal>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               )}
             </Scene>

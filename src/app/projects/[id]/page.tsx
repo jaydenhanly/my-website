@@ -101,7 +101,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Project Cover Image */}
           {project.storytelling ? (
-            <section className="flex min-h-screen flex-col justify-center">
+            <section className="flex min-h-[50vh] flex-col justify-center">
               <Reveal distance={70} scale={0.96} duration={0.9}>
                 <div className="rounded-xl overflow-hidden bg-gray-100 aspect-video">
                   <Image
@@ -129,7 +129,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           <div className="prose prose-sm max-w-none">
             {/* Summary */}
             {project.storytelling ? (
-              <section className="flex min-h-screen flex-col justify-center">
+              <section className="flex min-h-[50vh] flex-col justify-center">
                 <Reveal distance={60} duration={0.8}>
                   <p className="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-gray-400">Overview</p>
                   <p className="max-w-3xl text-3xl md:text-4xl font-medium text-black leading-snug">
@@ -149,7 +149,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             {/* Results */}
             {project.results && project.results.length > 0 && (
               project.storytelling ? (
-                <section className="flex min-h-screen flex-col justify-center">
+                <section className="flex min-h-[50vh] flex-col justify-center">
                   <Reveal distance={60} duration={0.8}>
                     <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-gray-400">Results</p>
                   </Reveal>
@@ -182,7 +182,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             {/* Highlights */}
             {project.highlights && project.highlights.length > 0 && (
               project.storytelling ? (
-                <section className="flex min-h-screen flex-col justify-center">
+                <section className="flex min-h-[50vh] flex-col justify-center">
                   <Reveal distance={60} duration={0.8}>
                     <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-gray-400">Key Highlights</p>
                   </Reveal>

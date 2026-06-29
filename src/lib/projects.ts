@@ -51,8 +51,8 @@ export const projects: Project[] = [
     title: 'Optimising retention and engagement in digital dentistry',
     company: '3Shape',
     role: 'Senior UX Designer / Team Lead',
-    description: 'Revolutionising digital dentistry with market leading intraoral scanners',
-    summary: 'I worked with the marketing, self-service and after-sales teams to improve their sites — restructuring us into an internal agency model, building up design operations, and launching web experiences that drove real KPI gains.',
+    description: 'Revolutionising dentistry with market-leading intraoral scanners',
+    summary: 'I worked with the marketing, self-service and after-sales teams to improve their sites — restructuring us into an internal agency model, scaling design operations, and launching web experiences that drove real KPI gains.',
     startDate: '2024-01',
     endDate: '2026-01',
     tags: ['Team management', 'UI Design', 'Product design', 'Business development', 'User research', 'Analytics'],
@@ -60,10 +60,10 @@ export const projects: Project[] = [
     caseStudies: [
       {
         title: 'Launching a new after-sales experience',
-        problem:
+        body: [
           'This site is home to everything from onboarding courses and account sign-ups to in-depth training, product guides, help articles and support cases.',
-        solution:
-          'It needed a new information architecture, informed by card sorting and a content audit. I balanced findability — a search bar front and centre — with discoverability through three large tiles for the content pillars: onboarding, training and support.',
+          'It needed a new information architecture, informed by card sorting and a content audit. I balanced findability — a search bar front and centre — with discoverability through three large tiles for the pillars: onboarding, training and support.',
+        ],
         images: [
           {
             src: '/images/projects/3shape-2024/aftersales-homepage.png',
@@ -72,18 +72,18 @@ export const projects: Project[] = [
           },
         ],
         metrics: [
-          { value: '+32.5%', label: '7-day retention' },
-          { value: '+9.5%', label: '30-day retention' },
+          { value: '115%', label: '1-day retention' },
+          { value: '82.5%', label: '7-day retention' },
+          { value: '41%', label: '30-day retention' },
         ],
       },
       {
         title: 'Increasing engagement on the marketing homepage',
-        problem:
+        body: [
           'Through Amplitude and Google Analytics I saw a steep CTR drop on the 2nd, 3rd and 4th carousel images — people weren’t sticking around to watch it scroll.',
-        solution:
-          'We challenged the long-standing promotions carousel, using analytics to win approval. My principle: never hide content. We surfaced the four key user goals as CTAs in the banner, and added variable-sized tiles in ‘The Latest from 3Shape’ for marketing to experiment with.',
-        resultsText:
-          'We turned a full-page carousel delivering ~750 clicks/month into a page of elements totalling over ~2500 clicks/month.',
+          'We challenged the long-standing promotions carousel, using data to win approval. My principle: never hide content. We surfaced the four key user goals as CTAs in the banner, and added variable-sized tiles in ‘The Latest from 3Shape’ for marketing to experiment with.',
+          'We turned a full-page carousel delivering ~750 clicks/month into a layout of elements totalling over ~2500 clicks/month.',
+        ],
         images: [
           {
             src: '/images/projects/3shape-2024/carousel-before.jpg',
@@ -100,6 +100,9 @@ export const projects: Project[] = [
       },
       {
         title: 'Building up our design operations',
+        body: [
+          'Beyond individual projects, I invested in the operations that let a small team ship consistently — the analytics, documentation and planning underneath the work.',
+        ],
         images: [
           {
             src: '/images/projects/3shape-2024/design-ops-analytics.png',
@@ -322,5 +325,25 @@ export const projects: Project[] = [
       'Conducted extensive user testing in real classrooms',
       'Managed production timeline and vendor negotiations',
     ],
+  },
+];
+
+export interface SideProject {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  tags: string[];
+  /** Optional outbound link (live site, repo, etc.). Omit for a non-clickable tile. */
+  url?: string;
+}
+
+export const sideProjects: SideProject[] = [
+  {
+    id: 'spark',
+    name: 'Spark',
+    tagline: 'A side project in the works',
+    description: 'An idea I’m exploring in my own time — more details coming soon.',
+    tags: ['Side project'],
   },
 ];
