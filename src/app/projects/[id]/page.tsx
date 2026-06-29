@@ -214,7 +214,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
             {/* Case Studies — immersive scroll story */}
             {project.caseStudies && project.caseStudies.length > 0 && project.storytelling && (
-              <StoryCaseStudies studies={project.caseStudies} />
+              <StoryCaseStudies
+                studies={project.caseStudies}
+                celebrateFinalImage={project.confettiFinale}
+              />
             )}
 
             {/* Case Studies — standard layout */}

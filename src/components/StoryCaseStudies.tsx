@@ -1,9 +1,10 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import type { CaseStudySection } from '@/lib/projects';
+import type { CaseStudyImage, CaseStudySection } from '@/lib/projects';
 import ImageLightbox from './ui/ImageLightbox';
 import Reveal from './ui/Reveal';
+import Confetti from './ui/Confetti';
 
 /** A full-viewport stage that vertically centres a single content piece. */
 function Scene({ children, className }: { children: ReactNode; className?: string }) {
@@ -14,7 +15,66 @@ function Scene({ children, className }: { children: ReactNode; className?: strin
   );
 }
 
-export default function StoryCaseStudies({ studies }: { studies: CaseStudySection[] }) {
+/** A caption with more than two words is treated as prose worth pairing. */
+function hasPairableText(image: CaseStudyImage): boolean {
+  return !!image.caption && image.caption.trim().split(/\s+/).length > 2;
+}
+
+/**
+ * One full-screen stage per image. Images with a descriptive caption are paired
+ * side-by-side with that text (alternating sides for rhythm); short labels
+ * (Before/After/Mockup…) stay centred beneath the image.
+ */
+function ImageScene({
+  image,
+  index,
+  celebrate = false,
+}: {
+  image: CaseStudyImage;
+  index: number;
+  celebrate?: boolean;
+}) {
+  const content = !hasPairableText(image) ? (
+    <Reveal distance={80} scale={0.94} duration={0.9} className="w-full">
+      <div className="mx-auto max-h-[82vh] w-full overflow-hidden">
+        <ImageLightbox image={image} />
+      </div>
+    </Reveal>
+  ) : (
+    <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+      <Reveal distance={70} scale={0.96} duration={0.9} className={index % 2 === 1 ? 'md:order-2' : ''}>
+        <ImageLightbox image={image} showCaption={false} />
+      </Reveal>
+      <Reveal distance={50} delay={0.1} className={index % 2 === 1 ? 'md:order-1' : ''}>
+        <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">{image.caption}</p>
+      </Reveal>
+    </div>
+  );
+
+  return (
+    <Scene className={celebrate ? 'relative' : undefined}>
+      {celebrate && <Confetti count={90} />}
+      {content}
+    </Scene>
+  );
+}
+
+export default function StoryCaseStudies({
+  studies,
+  celebrateFinalImage = false,
+}: {
+  studies: CaseStudySection[];
+  celebrateFinalImage?: boolean;
+}) {
+  // Locate the project's very last image so it can get a celebratory finale.
+  const studiesWithImages = studies
+    .map((study, idx) => ({ idx, count: study.images?.length ?? 0 }))
+    .filter((s) => s.count > 0);
+  const finale =
+    celebrateFinalImage && studiesWithImages.length > 0
+      ? studiesWithImages[studiesWithImages.length - 1]
+      : null;
+
   return (
     <div>
       {studies.map((study, i) => (
@@ -90,15 +150,14 @@ export default function StoryCaseStudies({ studies }: { studies: CaseStudySectio
             </Scene>
           )}
 
-          {/* One full-screen stage per image */}
+          {/* One full-screen stage per image, paired with its text where possible */}
           {study.images?.map((img, j) => (
-            <Scene key={j}>
-              <Reveal distance={80} scale={0.94} duration={0.9} className="w-full">
-                <div className="mx-auto max-h-[82vh] w-full overflow-hidden">
-                  <ImageLightbox image={img} />
-                </div>
-              </Reveal>
-            </Scene>
+            <ImageScene
+              key={j}
+              image={img}
+              index={j}
+              celebrate={!!finale && finale.idx === i && j === finale.count - 1}
+            />
           ))}
 
           {/* Outcome — results narrative and headline metrics */}
@@ -112,15 +171,18 @@ export default function StoryCaseStudies({ studies }: { studies: CaseStudySectio
               )}
 
               {study.metrics && study.metrics.length > 0 && (
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-10">
-                  {study.metrics.map((metric, j) => (
+                <div className="relative mt-16">
+                  <Confetti count={70} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                    {study.metrics.map((metric, j) => (
                     <Reveal key={j} delay={j * 0.15} distance={40} scale={0.8} duration={0.9}>
                       <div className="text-center">
                         <p className="text-7xl md:text-8xl font-bold tracking-tighter text-black">{metric.value}</p>
                         <p className="mt-4 text-base uppercase tracking-wide text-gray-500">{metric.label}</p>
                       </div>
                     </Reveal>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               )}
             </Scene>

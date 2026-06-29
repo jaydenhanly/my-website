@@ -6,7 +6,13 @@ import Image from 'next/image';
 import { AnimatePresence, motion, easeOut, useReducedMotion } from 'framer-motion';
 import type { CaseStudyImage } from '@/lib/projects';
 
-export default function ImageLightbox({ image }: { image: CaseStudyImage }) {
+export default function ImageLightbox({
+  image,
+  showCaption = true,
+}: {
+  image: CaseStudyImage;
+  showCaption?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
@@ -67,7 +73,7 @@ export default function ImageLightbox({ image }: { image: CaseStudyImage }) {
         </span>
       </button>
 
-      {image.caption && (
+      {showCaption && image.caption && (
         <figcaption className="mt-3 text-sm text-gray-500 leading-relaxed">{image.caption}</figcaption>
       )}
 
