@@ -4,6 +4,7 @@ import { FormEvent, useState } from 'react';
 import { motion, easeOut } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
+import { PlaneIcon } from '@/components/ui/SectionIcons';
 
 export default function ContactSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -54,7 +55,10 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-24 px-8 border-t border-gray-200">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-black mb-12">Get in touch</h2>
+        <h2 className="text-4xl font-bold text-black mb-12 flex items-center gap-3">
+          <PlaneIcon className="h-8 w-8 flex-none" />
+          Get in touch
+        </h2>
 
         <motion.div
           ref={ref}

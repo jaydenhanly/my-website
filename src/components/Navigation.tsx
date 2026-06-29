@@ -1,6 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { SmileyIcon, BriefcaseIcon, FolderIcon, SparklesIcon, PlaneIcon } from '@/components/ui/SectionIcons';
+
+const navItems = [
+  { id: 'about', label: 'About', Icon: SmileyIcon, iconHover: 'group-hover:-rotate-12 group-hover:scale-110' },
+  { id: 'experience', label: 'Experience', Icon: BriefcaseIcon, iconHover: 'group-hover:rotate-6 group-hover:scale-110' },
+  { id: 'projects', label: 'Projects', Icon: FolderIcon, iconHover: 'group-hover:rotate-12 group-hover:scale-110' },
+  { id: 'side-projects', label: 'Side Projects', Icon: SparklesIcon, iconHover: 'group-hover:rotate-[20deg] group-hover:scale-125' },
+  { id: 'contact', label: 'Contact', Icon: PlaneIcon, iconHover: 'group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:rotate-12' },
+];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,14 +43,6 @@ export default function Navigation() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'side-projects', label: 'Side Projects' },
-    { id: 'contact', label: 'Contact' },
-  ];
-
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isScrolled ? 'bg-[#C7D0FF]/90 backdrop-blur-sm border-b border-[#A8B4F0]/50' : 'bg-[#C7D0FF] border-b border-[#A8B4F0]'}`}>
       <div className="max-w-5xl mx-auto px-8 py-4 flex items-center justify-between h-16">
@@ -53,14 +54,15 @@ export default function Navigation() {
         </button>
 
         <div className="flex gap-8">
-          {navItems.map((item) => (
+          {navItems.map(({ id, label, Icon, iconHover }) => (
             <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="text-sm text-gray-800 hover:text-black transition-colors cursor-pointer relative group"
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className="text-sm text-gray-800 hover:text-black transition-colors cursor-pointer relative group inline-flex items-center gap-1.5"
             >
-              {item.label}
-              <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              <Icon className={`h-4 w-4 transition-transform duration-300 ease-out ${iconHover}`} />
+              {label}
+              <span className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${activeSection === id ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </button>
           ))}
         </div>
