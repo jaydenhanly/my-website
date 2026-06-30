@@ -11,7 +11,6 @@ const projectImageMap: Record<string, string> = {
   'skybox-2022': '/images/projects/skybox-2022-cover.jpg',
   'cphux-2019': '/images/projects/cphux-2019-cover.jpg',
   '3p-learning-2016': '/images/projects/3p-learning-2016-cover.jpg',
-  'spark-2026': '/images/projects/spark-2026-cover.png',
 };
 
 interface ProjectPageProps {

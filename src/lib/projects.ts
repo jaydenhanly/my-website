@@ -43,8 +43,6 @@ export interface Project {
   storytelling?: boolean;
   /** Fire a celebratory confetti burst on the final image reveal. */
   confettiFinale?: boolean;
-  /** Group under the "Side Projects" section instead of the main Projects grid. */
-  sideProject?: boolean;
 }
 
 export const projects: Project[] = [
@@ -328,71 +326,24 @@ export const projects: Project[] = [
       'Managed production timeline and vendor negotiations',
     ],
   },
-  {
-    id: 'spark-2026',
-    title: 'Spark: fast, simple polling with no hidden paywalls',
-    company: 'Side project',
-    role: 'Designer & builder',
-    description: 'A real-time audience engagement platform born from a hackathon',
-    summary: 'Spark began as a hackathon experiment and grew into an ongoing exploration — both of a product idea and of how quickly AI-assisted “vibe coding” can take something from prototype to polished platform.',
-    startDate: '2026-05',
-    endDate: '2026-06',
-    tags: ['Side project', 'Vibe coding', 'Product design', 'Game design', 'Prototyping'],
-    storytelling: true,
-    sideProject: true,
-    confettiFinale: true,
-    caseStudies: [
-      {
-        title: 'An hour-and-a-half hackathon prototype',
-        body: [
-          'Spark started as a hackathon on 30 May. Within about ninety minutes I had a working prototype of a polling platform up and running.',
-          'That speed captivated me — watching an idea become something usable so fast was the spark that turned a one-off experiment into an ongoing project.',
-        ],
-        images: [
-          {
-            src: '/images/projects/spark-2026/session-builder.png',
-            alt: 'The Spark session builder showing interaction types to choose from',
-            caption: 'The build I had running within ninety minutes — pick an interaction type and you’re polling.',
-          },
-        ],
-      },
-      {
-        title: 'The gap I wanted to fill',
-        body: [
-          'There aren’t many good QR-code tools that genuinely focus on audience engagement — most are quizzes built around multiple choice and little else.',
-          'I wanted to draw on my game design experience to craft more engaging interactions between audience members, not just between the presenter and the crowd. Alongside the familiar quiz and poll, that means formats like predictions, emoji reactions, word clouds, Orbit and Tilt Ball.',
-        ],
-        images: [
-          {
-            src: '/images/projects/spark-2026/marketing-hero.png',
-            alt: 'The Spark marketing homepage hero',
-            caption: 'The positioning, distilled: fast, simple polling with no hidden paywalls.',
-          },
-        ],
-      },
-      {
-        title: 'Turning it into a product',
-        body: [
-          'From the prototype I started building outward — a proper marketing page and a wider set of product features beyond a single poll.',
-          'I also experimented with automating market research using the Strawberry browser, speeding up how I validate ideas and understand the space.',
-        ],
-      },
-      {
-        title: 'My reflections',
-        body: [
-          'This has been a fascinating process. It’s shown me just how quickly vibe coding can get ideas up and running — from concept to working prototype in an afternoon.',
-          'It’s also taught me how to get more predictable results from these tools by being deliberate in how you set up and structure your projects.',
-        ],
-        images: [
-          {
-            src: '/images/projects/spark-2026/product-composition.png',
-            alt: 'Spark shown across desktop and mobile',
-            caption: 'Designed for the screen at the front and the phone in every hand.',
-          },
-        ],
-      },
-    ],
-  },
 ];
 
-export const sideProjects: Project[] = projects.filter((project) => project.sideProject);
+export interface SideProject {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  tags: string[];
+  /** Optional outbound link (live site, repo, etc.). Omit for a non-clickable tile. */
+  url?: string;
+}
+
+export const sideProjects: SideProject[] = [
+  {
+    id: 'spark',
+    name: 'Spark',
+    tagline: 'A side project in the works',
+    description: 'An idea I’m exploring in my own time — more details coming soon.',
+    tags: ['Side project'],
+  },
+];

@@ -1,8 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, easeOut } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
-import CyclingHeadshot from './ui/CyclingHeadshot';
 
 export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -55,7 +55,14 @@ export default function HeroSection() {
           {/* Headshot - Right (with frame) */}
           <motion.div variants={imageVariants} className="flex items-center justify-center order-1 md:order-2">
             <div className="w-full max-w-md bg-gray-100 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-              <CyclingHeadshot />
+              <Image
+                src="/images/profile/headshot.avif"
+                alt="Jayden Hanly"
+                width={400}
+                height={533}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
           </motion.div>
 

@@ -6,7 +6,6 @@ import { motion, easeOut } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
 import { projects } from '@/lib/projects';
 import { useInView } from '@/hooks/useInView';
-import { FolderIcon } from '@/components/ui/SectionIcons';
 
 function formatDateRange(start: string, end: string): string {
   const startMonth = new Date(start + '-01').toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
@@ -50,10 +49,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-24 px-8 border-t border-gray-200">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-black mb-12 flex items-center gap-3">
-          <FolderIcon className="h-8 w-8 flex-none" />
-          Projects
-        </h2>
+        <h2 className="text-4xl font-bold text-black mb-12">Projects</h2>
 
         <motion.div
           ref={ref}
@@ -62,7 +58,7 @@ export default function ProjectsSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {projects.filter((project) => !project.sideProject).map((project) => (
+          {projects.map((project) => (
             <motion.div key={project.id} variants={itemVariants}>
               <Link href={`/projects/${project.id}`}>
                 <div className="group h-full rounded-lg overflow-hidden bg-white border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer flex flex-col">
