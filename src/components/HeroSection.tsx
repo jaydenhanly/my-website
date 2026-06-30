@@ -1,8 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, easeOut } from 'framer-motion';
 import { useReducedMotion } from 'framer-motion';
-import CyclingHeadshot from './ui/CyclingHeadshot';
 
 export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -44,23 +44,16 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="pt-32 pb-24 px-8">
-      <div className="max-w-5xl mx-auto">
+    <section className="px-8 pt-32">
+      <div className="mx-auto max-w-5xl">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 items-end gap-8 md:grid-cols-2"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Headshot - Right (with frame) */}
-          <motion.div variants={imageVariants} className="flex items-center justify-center order-1 md:order-2">
-            <div className="w-full max-w-md bg-gray-100 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-              <CyclingHeadshot />
-            </div>
-          </motion.div>
-
           {/* Text - Left */}
-          <div className="space-y-8 order-2 md:order-1">
+          <div className="order-2 space-y-8 pb-24 md:order-1">
             <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
@@ -89,6 +82,18 @@ export default function HeroSection() {
               </a>
             </motion.div>
           </div>
+
+          {/* Headshot - Right (free-floating cutout, anchored to bottom) */}
+          <motion.div variants={imageVariants} className="order-1 flex justify-center self-end md:order-2 md:justify-end">
+            <Image
+              src="/images/profile/hero-headshot.png"
+              alt="Jayden Hanly"
+              width={1086}
+              height={1448}
+              priority
+              className="h-auto w-full max-w-xs object-contain md:max-w-md"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>

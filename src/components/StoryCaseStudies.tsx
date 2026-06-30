@@ -182,7 +182,7 @@ export default function StoryCaseStudies({
                   </p>
                 </Reveal>
               )}
-              <div className="mt-12 grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
+              <div className="mt-12 grid grid-cols-2 items-start gap-4 sm:gap-8 md:gap-12">
                 {study.finale.images.map((img, j) => (
                   <Reveal key={j} delay={0.1 + j * 0.1} distance={70} scale={0.96} duration={0.9}>
                     <ImageLightbox image={img} />
