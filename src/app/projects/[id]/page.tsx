@@ -85,6 +85,20 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <p className="text-sm font-medium text-gray-600">
                 {project.role}
               </p>
+
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 bg-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-800"
+                >
+                  View live app
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5h5v5m0-5L10 14M19 14v5H5V5h5" />
+                  </svg>
+                </a>
+              )}
             </div>
 
             {/* Tags */}

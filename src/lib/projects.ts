@@ -24,6 +24,11 @@ export interface CaseStudySection {
   resultsText?: string;
   images?: CaseStudyImage[];
   metrics?: CaseStudyMetric[];
+  /** A celebratory closing: a line of text paired side-by-side with two images. */
+  finale?: {
+    text?: string;
+    images: CaseStudyImage[];
+  };
 }
 
 export interface Project {
@@ -45,6 +50,8 @@ export interface Project {
   confettiFinale?: boolean;
   /** Group under the "Side Projects" section instead of the main Projects grid. */
   sideProject?: boolean;
+  /** External URL to a live, viewable version of the project. */
+  liveUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -251,7 +258,7 @@ export const projects: Project[] = [
         body: [
           'By now we were a team of three, with a junior hire joining from university.',
           'We kicked off a rebrand with an external agency, joining every conceptual session and championing the brand internally.',
-          'With the system and handovers in place, we reskinned with the new brand. The result was fresh and gamer-focused — and the live product matched our mockups.',
+          'With the system and handovers in place, we reskinned with the new brand.',
         ],
         images: [
           {
@@ -264,17 +271,22 @@ export const projects: Project[] = [
             alt: 'Rebranded button components',
             caption: 'Button components, reskinned with the new brand.',
           },
-          {
-            src: '/images/projects/skybox-2022/rebrand-mockup.jpg',
-            alt: 'Rebranded product mockup',
-            caption: 'Mockup',
-          },
-          {
-            src: '/images/projects/skybox-2022/rebrand-live.png',
-            alt: 'Rebranded live product',
-            caption: 'Live product',
-          },
         ],
+        finale: {
+          text: 'The result was fresh and gamer-focused — and the live product matched our mockups.',
+          images: [
+            {
+              src: '/images/projects/skybox-2022/rebrand-mockup.jpg',
+              alt: 'Rebranded product mockup',
+              caption: 'Mockup',
+            },
+            {
+              src: '/images/projects/skybox-2022/rebrand-live.png',
+              alt: 'Rebranded live product',
+              caption: 'Live product',
+            },
+          ],
+        },
       },
     ],
   },
@@ -341,6 +353,7 @@ export const projects: Project[] = [
     storytelling: true,
     sideProject: true,
     confettiFinale: true,
+    liveUrl: 'https://hackathon30may.vercel.app',
     caseStudies: [
       {
         title: 'An hour-and-a-half hackathon prototype',

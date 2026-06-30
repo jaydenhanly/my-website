@@ -20,8 +20,11 @@ interface TableProps {
 
 export default function Table({ columns, rows }: TableProps) {
   const prefersReducedMotion = useReducedMotion();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const expandable = rows.some((row) => typeof row.description === 'string');
+  const firstExpandableIndex = rows.findIndex((row) => typeof row.description === 'string');
+  const [openIndex, setOpenIndex] = useState<number | null>(
+    firstExpandableIndex === -1 ? null : firstExpandableIndex
+  );
+  const expandable = firstExpandableIndex !== -1;
 
   const toggle = (index: number) => setOpenIndex((prev) => (prev === index ? null : index));
 

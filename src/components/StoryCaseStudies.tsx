@@ -66,12 +66,23 @@ export default function StoryCaseStudies({
   studies: CaseStudySection[];
   celebrateFinalImage?: boolean;
 }) {
-  // Locate the project's very last image so it can get a celebratory finale.
+  // Prefer an explicit finale block for the celebration; otherwise fall back to
+  // the project's very last image.
+  let finaleBlockIdx = -1;
+  if (celebrateFinalImage) {
+    for (let k = studies.length - 1; k >= 0; k--) {
+      if (studies[k].finale) {
+        finaleBlockIdx = k;
+        break;
+      }
+    }
+  }
+
   const studiesWithImages = studies
     .map((study, idx) => ({ idx, count: study.images?.length ?? 0 }))
     .filter((s) => s.count > 0);
   const finale =
-    celebrateFinalImage && studiesWithImages.length > 0
+    celebrateFinalImage && finaleBlockIdx === -1 && studiesWithImages.length > 0
       ? studiesWithImages[studiesWithImages.length - 1]
       : null;
 
@@ -159,6 +170,27 @@ export default function StoryCaseStudies({
               celebrate={!!finale && finale.idx === i && j === finale.count - 1}
             />
           ))}
+
+          {/* Celebratory finale — a line of text over two side-by-side images */}
+          {study.finale && (
+            <Scene className="relative">
+              {finaleBlockIdx === i && <Confetti count={120} />}
+              {study.finale.text && (
+                <Reveal distance={50} duration={0.8} className="mx-auto max-w-3xl text-center">
+                  <p className="text-3xl md:text-4xl font-medium text-black leading-snug">
+                    {study.finale.text}
+                  </p>
+                </Reveal>
+              )}
+              <div className="mt-12 grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-16">
+                {study.finale.images.map((img, j) => (
+                  <Reveal key={j} delay={0.1 + j * 0.1} distance={70} scale={0.96} duration={0.9}>
+                    <ImageLightbox image={img} />
+                  </Reveal>
+                ))}
+              </div>
+            </Scene>
+          )}
 
           {/* Outcome — results narrative and headline metrics */}
           {(study.resultsText || (study.metrics && study.metrics.length > 0)) && (
