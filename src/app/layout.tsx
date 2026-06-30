@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   title: 'Jayden – Product Designer',
@@ -17,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-white text-gray-800 antialiased">
+        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
         {children}
       </body>
     </html>
