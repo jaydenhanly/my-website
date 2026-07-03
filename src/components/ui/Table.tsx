@@ -31,7 +31,15 @@ export default function Table({ columns, rows }: TableProps) {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full table-fixed">
+          {/* Fixed column widths so expanding a row (which renders a full-width
+              description cell) never recomputes column widths and shifts text. */}
+          <colgroup>
+            {columns.map((column, i) => (
+              <col key={column.key} className={i === 0 ? 'w-32' : undefined} />
+            ))}
+            {expandable && <col className="w-12" />}
+          </colgroup>
           {/* Header Row */}
           <thead>
             <tr className="bg-orange-100">

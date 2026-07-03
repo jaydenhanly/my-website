@@ -4,6 +4,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Always reserve the vertical scrollbar gutter so content height changes
+     (e.g. collapsing the experience table) never shift the layout sideways. */
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
 }
 
 body {

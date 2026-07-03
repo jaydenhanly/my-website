@@ -52,8 +52,8 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
         >
-          {/* Text - Left */}
-          <div className="order-2 space-y-8 pb-24 md:order-1">
+          {/* Text - Right */}
+          <div className="order-2 space-y-8 pb-24 md:order-2">
             <motion.div variants={itemVariants}>
               <h1 className="text-6xl md:text-7xl font-bold text-black leading-tight">
                 Product designer.
@@ -83,15 +83,15 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Headshot - Right (free-floating cutout, anchored to bottom) */}
-          <motion.div variants={imageVariants} className="order-1 flex justify-center self-end md:order-2 md:justify-end">
+          {/* Headshot - Left (free-floating cutout, anchored to bottom) */}
+          <motion.div variants={imageVariants} className="order-1 flex justify-center self-end md:order-1 md:justify-start">
             <Image
               src="/images/profile/hero-headshot.png"
               alt="Jayden Hanly"
-              width={1086}
-              height={1448}
+              width={888}
+              height={1005}
               priority
-              className="h-auto w-full max-w-xs object-contain md:max-w-md"
+              className="h-auto w-full max-w-[55.5rem] object-contain"
             />
           </motion.div>
         </motion.div>

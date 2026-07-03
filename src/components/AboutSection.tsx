@@ -23,7 +23,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-24 px-8 border-t border-gray-200">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold text-black mb-12 flex items-center gap-3">
           <SmileyIcon className="h-8 w-8 flex-none" />
           About
@@ -31,7 +31,7 @@ export default function AboutSection() {
 
         <motion.div
           ref={ref}
-          className="max-w-2xl space-y-6"
+          className="space-y-6"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
