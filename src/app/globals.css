@@ -48,6 +48,16 @@ a:hover {
   color: rgb(102, 102, 102);
 }
 
+/* Hide scrollbar for the horizontally-scrolling mobile nav */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Focus states */
 a:focus-visible,
 button:focus-visible {
